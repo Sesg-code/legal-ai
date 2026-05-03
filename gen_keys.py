@@ -1,20 +1,8 @@
-# gen_keys.py — однократный запуск для генерации ключей
-"""
-Запусти один раз:
-    python gen_keys.py
-
-Создаст:
-    - api_keys.json — список валидных ключей для бэкенда
-    - reviewer_keys.txt — таблица «рецензент → ключ» для тебя
-
-Каждому из 10 рецензентов раздаёшь ИХ персональный ключ.
-"""
-
 import json
 import secrets
 
 REVIEWERS = [
-    # Подставь реальные имена своих рецензентов
+    
     "Тарасов А.А.",
     "Рецензент 2",
     "Рецензент 3",
@@ -41,13 +29,13 @@ def main():
         json.dump({"keys": [k for _, k in pairs]}, f, indent=2)
     print("✓ Создан api_keys.json (для бэкенда)")
 
-    # 2. Шпаргалка для тебя — кому какой ключ выдать
+    # 2. Шпаргалка — кому какой ключ выдать
     with open("reviewer_keys.txt", "w", encoding="utf-8") as f:
         f.write("РЕЦЕНЗЕНТ → API-КЛЮЧ\n")
         f.write("=" * 70 + "\n\n")
         for name, key in pairs:
             f.write(f"{name}\n  {key}\n\n")
-    print("✓ Создан reviewer_keys.txt (для тебя — кому какой ключ выдать)")
+    print("✓ Создан reviewer_keys.txt (кому какой ключ выдать)")
 
 
 if __name__ == "__main__":
